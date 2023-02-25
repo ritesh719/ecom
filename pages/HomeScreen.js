@@ -1,5 +1,7 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import React from "react";
+import { useIsFocused } from "@react-navigation/native";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
   Dimensions,
   Image,
@@ -8,9 +10,12 @@ import {
   ScrollView,
   StatusBar,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
+import Footer from "../components/Footer";
+import ProductCard from "../components/ProductCard";
 import TopHeader from "../components/TopHeader";
 
 const slider = [
@@ -20,6 +25,22 @@ const slider = [
 ];
 
 export default function HomeScreen({ navigation }) {
+  const [pp, setpp] = useState(null);
+
+  const isFocused = useIsFocused();
+
+  const fetch_pp = () => {
+    axios
+      .get("https://qasstly.com/api/fetch_top_selling_products.php")
+      .then((res) => {
+        setpp(res.data);
+      });
+  };
+
+  useEffect(() => {
+    fetch_pp();
+  }, [isFocused]);
+
   const sliderWrapper = ({ item }) => {
     return (
       <View>
@@ -119,196 +140,26 @@ export default function HomeScreen({ navigation }) {
       <View
         style={{ marginBottom: 50, flexDirection: "row", flexWrap: "wrap" }}
       >
-        <View style={{ width: width / 2, padding: 10 }}>
-          <View style={{ borderWidth: 1, padding: 5 }}>
-            <Image
-              source={{
-                uri: "https://qasstly.com/products_img/product_607d3abc9c75f.jpg",
+        {pp &&
+          pp.map((item) => (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("ProductDetails", { pid: item.product_id });
               }}
-              style={{ width: width / 2 - 32, height: 200 }}
-            />
-            <Text
-              numberOfLines={2}
-              style={{ fontWeight: "bold", fontSize: 16 }}
+              key={item.product_id}
             >
-              Acer Aspire 3 A315-23 AMD Ryzen 5 3500U 8GB 256GB SSD Linux 15.6
-            </Text>
-            <Text
-              style={{
-                textDecorationStyle: "solid",
-                textDecorationLine: "line-through",
-                fontWeight: "bold",
-                color: "#888",
-              }}
-            >
-              1129
-            </Text>
-            <Text style={{ color: "tomato", fontWeight: "900", fontSize: 20 }}>
-              989
-            </Text>
-          </View>
-        </View>
-        <View style={{ width: width / 2, padding: 10 }}>
-          <View style={{ borderWidth: 1, padding: 5 }}>
-            <Image
-              source={{
-                uri: "https://qasstly.com/products_img/product_607d3abc9c75f.jpg",
-              }}
-              style={{ width: width / 2 - 32, height: 200 }}
-            />
-            <Text
-              numberOfLines={2}
-              style={{ fontWeight: "bold", fontSize: 16 }}
-            >
-              Acer Aspire 3 A315-23 AMD Ryzen 5 3500U 8GB 256GB SSD Linux 15.6
-            </Text>
-            <Text
-              style={{
-                textDecorationStyle: "solid",
-                textDecorationLine: "line-through",
-                fontWeight: "bold",
-                color: "#888",
-              }}
-            >
-              1129
-            </Text>
-            <Text style={{ color: "tomato", fontWeight: "900", fontSize: 20 }}>
-              989
-            </Text>
-          </View>
-        </View>
-        <View style={{ width: width / 2, padding: 10 }}>
-          <View style={{ borderWidth: 1, padding: 5 }}>
-            <Image
-              source={{
-                uri: "https://qasstly.com/products_img/product_607d3abc9c75f.jpg",
-              }}
-              style={{ width: width / 2 - 32, height: 200 }}
-            />
-            <Text
-              numberOfLines={2}
-              style={{ fontWeight: "bold", fontSize: 16 }}
-            >
-              Acer Aspire 3 A315-23 AMD Ryzen 5 3500U 8GB 256GB SSD Linux 15.6
-            </Text>
-            <Text
-              style={{
-                textDecorationStyle: "solid",
-                textDecorationLine: "line-through",
-                fontWeight: "bold",
-                color: "#888",
-              }}
-            >
-              1129
-            </Text>
-            <Text style={{ color: "tomato", fontWeight: "900", fontSize: 20 }}>
-              989
-            </Text>
-          </View>
-        </View>
-        <View style={{ width: width / 2, padding: 10 }}>
-          <View style={{ borderWidth: 1, padding: 5 }}>
-            <Image
-              source={{
-                uri: "https://qasstly.com/products_img/product_607d3abc9c75f.jpg",
-              }}
-              style={{ width: width / 2 - 32, height: 200 }}
-            />
-            <Text
-              numberOfLines={2}
-              style={{ fontWeight: "bold", fontSize: 16 }}
-            >
-              Acer Aspire 3 A315-23 AMD Ryzen 5 3500U 8GB 256GB SSD Linux 15.6
-            </Text>
-            <Text
-              style={{
-                textDecorationStyle: "solid",
-                textDecorationLine: "line-through",
-                fontWeight: "bold",
-                color: "#888",
-              }}
-            >
-              1129
-            </Text>
-            <Text style={{ color: "tomato", fontWeight: "900", fontSize: 20 }}>
-              989
-            </Text>
-          </View>
-        </View>
-        <View style={{ width: width / 2, padding: 10 }}>
-          <View style={{ borderWidth: 1, padding: 5 }}>
-            <Image
-              source={{
-                uri: "https://qasstly.com/products_img/product_607d3abc9c75f.jpg",
-              }}
-              style={{ width: width / 2 - 32, height: 200 }}
-            />
-            <Text
-              numberOfLines={2}
-              style={{ fontWeight: "bold", fontSize: 16 }}
-            >
-              Acer Aspire 3 A315-23 AMD Ryzen 5 3500U 8GB 256GB SSD Linux 15.6
-            </Text>
-            <Text
-              style={{
-                textDecorationStyle: "solid",
-                textDecorationLine: "line-through",
-                fontWeight: "bold",
-                color: "#888",
-              }}
-            >
-              1129
-            </Text>
-            <Text style={{ color: "tomato", fontWeight: "900", fontSize: 20 }}>
-              989
-            </Text>
-          </View>
-        </View>
+              <ProductCard
+                img={"https://qasstly.com/" + item.main_img}
+                title={item.title}
+                dprice={item.normal_price}
+                price={item.normal_price - item.discount}
+                k={item.product_id}
+              />
+            </TouchableOpacity>
+          ))}
       </View>
 
-      <View
-        style={{
-          marginBottom: 50,
-          padding: 20,
-          backgroundColor: "#eee",
-        }}
-      >
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <Image
-            source={{ uri: "https://qasstly.com/images/logo.png" }}
-            style={{ width: 159, height: 52, marginBottom: 20 }}
-          />
-        </View>
-        <Text
-          style={{ fontWeight: "900", marginVertical: 3, textAlign: "center" }}
-        >
-          Address: Güngören-Bağcılar sanayi, İkitelli Başakşehir, Istanbul,
-          Turkey
-        </Text>
-        <Text
-          style={{ fontWeight: "900", marginVertical: 3, textAlign: "center" }}
-        >
-          Email: Support@themes.com
-        </Text>
-        <Text
-          style={{ fontWeight: "900", marginVertical: 3, textAlign: "center" }}
-        >
-          Phone: +1 (800) 456 456 0123
-        </Text>
-
-        <View
-          style={{
-            justifyContent: "center",
-            flexDirection: "row",
-            marginTop: 10,
-          }}
-        >
-          <MaterialCommunityIcons name="facebook" size={24} />
-          <MaterialCommunityIcons name="twitter" size={24} />
-          <MaterialCommunityIcons name="google" size={24} />
-          <MaterialCommunityIcons name="instagram" size={24} />
-        </View>
-      </View>
+      <Footer />
     </ScrollView>
   );
 }

@@ -25,8 +25,10 @@ export default function TopHeader({ navigation }) {
         />
       </View>
       <View style={{ flexDirection: "row", padding: 10 }}>
-        <MaterialCommunityIcons name="home-search" size={28} />
-        <MaterialCommunityIcons name="cart" size={28} />
+        {/* <MaterialCommunityIcons name="home-search" size={28} /> */}
+        <TouchableOpacity onPress={() => {navigation.navigate('Cart')}}>
+          <MaterialCommunityIcons name="cart" size={28} />
+        </TouchableOpacity>
       </View>
     </View>
   );

@@ -7,13 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import AppStacks from "./AppStacks";
 import DrawerNavigation from "./DrawerNavigation";
 
-const LandingScreen = () => {
-  return (
-    <View>
-      <Text>Landing</Text>
-    </View>
-  );
-};
+const Stack = createStackNavigator();
 
 const Routes = () => {
   const { user, setUser } = useContext(AuthContext);
