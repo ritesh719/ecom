@@ -13,7 +13,7 @@ export default function ProductCard({ img, title, dprice, price, k }) {
           }}
           style={{ width: width / 2 - 32, height: 200 }}
         />
-        <Text numberOfLines={2} style={{ fontWeight: "bold", fontSize: 16 }}>
+        <Text numberOfLines={2} style={{ fontWeight: "bold", fontSize: 16, textAlign: 'right' }}>
           {title}
         </Text>
         {dprice && (
@@ -23,14 +23,15 @@ export default function ProductCard({ img, title, dprice, price, k }) {
               textDecorationLine: "line-through",
               fontWeight: "bold",
               color: "#888",
+              textAlign: 'right'
             }}
           >
             {dprice}
           </Text>
         )}
         {price && (
-          <Text style={{ color: "tomato", fontWeight: "900", fontSize: 20 }}>
-            {price}
+          <Text style={{ color: "tomato", fontWeight: "900", fontSize: 20, textAlign: 'right' }}>
+            IQD {price}
           </Text>
         )}
       </View>

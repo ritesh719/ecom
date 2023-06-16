@@ -8,7 +8,7 @@ export default function Footer() {
       style={{
         marginBottom: 50,
         padding: 20,
-        backgroundColor: "#eee",
+        backgroundColor: "#fbfbfb",
       }}
     >
       <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -30,7 +30,7 @@ export default function Footer() {
       <Text
         style={{ fontWeight: "900", marginVertical: 3, textAlign: "center" }}
       >
-        Phone: +1 (800) 456 456 0123
+         هاتف: 0123 456 789 (800) 1+
       </Text>
 
       <View

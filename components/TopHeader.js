@@ -10,6 +10,7 @@ export default function TopHeader({ navigation }) {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
+        backgroundColor: '#fbfbfb'
       }}
     >
       <TouchableOpacity
@@ -25,7 +26,9 @@ export default function TopHeader({ navigation }) {
         />
       </View>
       <View style={{ flexDirection: "row", padding: 10 }}>
-        {/* <MaterialCommunityIcons name="home-search" size={28} /> */}
+        <TouchableOpacity onPress={() => {navigation.navigate('Search')}}>
+          <MaterialCommunityIcons name="home-search" size={28}  />
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => {navigation.navigate('Cart')}}>
           <MaterialCommunityIcons name="cart" size={28} />
         </TouchableOpacity>

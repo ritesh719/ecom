@@ -13,7 +13,7 @@ export default function Financiers({navigation}) {
       }}
     >
       <TopHeader navigation={navigation} />
-        <WebView source={{uri: 'https://qasstly.com/all_banks_app.php'}} style={{width: '100%'}} />
+        <WebView source={{uri: 'https://qasstly.com/api/all_banks_app.php'}} style={{width: '100%'}} />
     </View>
   )
 }

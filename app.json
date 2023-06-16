@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ecom",
-    "slug": "ecom",
+    "name": "qasstly",
+    "slug": "qasstly",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.qasstly.www"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "dbc4b8af-7120-40b6-b075-d6f3443933bb"
+      }
     }
   }
 }

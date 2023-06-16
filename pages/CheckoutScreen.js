@@ -39,13 +39,9 @@ export default function CheckoutScreen({ navigation }) {
   }
 
   useEffect(() => {
-    console.log('====================================');
-    console.log(cart);
-    console.log(user);
-    console.log('====================================');
     let t = 0
     cart.map((it) => {
-       let fp = it.normal_price - (it.discount * it.normal_price / 100)
+       let fp = (it.normal_price - (it.discount * it.normal_price / 100)) * it.quantity
 
        t += parseFloat(fp)
     })
@@ -69,7 +65,7 @@ export default function CheckoutScreen({ navigation }) {
       <TopHeader navigation={navigation} />
 
       <View style={{ borderWidth: 1, margin: 10, padding: 10 }}>
-        <Text style={{ fontSize: 16, marginBottom: 20 }}>Billing Details</Text>
+        <Text style={{ fontSize: 16, marginBottom: 20 }}>تفاصيل الفاتورة</Text>
 
         <TextInput
           value={user.email}
@@ -79,6 +75,7 @@ export default function CheckoutScreen({ navigation }) {
             marginVertical: 8,
             backgroundColor: "#eee",
             color: "#000",
+            textAlign: 'right'
           }}
           editable={false}
         />
@@ -90,6 +87,7 @@ export default function CheckoutScreen({ navigation }) {
             marginVertical: 8,
             backgroundColor: "#eee",
             color: "#000",
+            textAlign: 'right'
           }}
           editable={false}
         />
@@ -101,6 +99,7 @@ export default function CheckoutScreen({ navigation }) {
             marginVertical: 8,
             backgroundColor: "#eee",
             color: "#000",
+            textAlign: 'right'
           }}
           editable={false}
         />
@@ -112,6 +111,7 @@ export default function CheckoutScreen({ navigation }) {
             marginVertical: 8,
             backgroundColor: "#eee",
             color: "#000",
+            textAlign: 'right'
           }}
           editable={false}
         />
@@ -123,6 +123,7 @@ export default function CheckoutScreen({ navigation }) {
             marginVertical: 8,
             backgroundColor: "#eee",
             color: "#000",
+            textAlign: 'right'
           }}
           editable={false}
         />
@@ -137,7 +138,7 @@ export default function CheckoutScreen({ navigation }) {
             fontWeight: "bold",
           }}
         >
-          Payment Details
+          بيانات إكمال الطلب
         </Text>
 
         <TextInput
@@ -148,6 +149,7 @@ export default function CheckoutScreen({ navigation }) {
             marginVertical: 8,
             backgroundColor: "#eee",
             color: "#000",
+            textAlign: 'right'
           }}
           editable={false}
         />
@@ -159,57 +161,109 @@ export default function CheckoutScreen({ navigation }) {
             marginVertical: 8,
             backgroundColor: "#eee",
             color: "#000",
+            textAlign: 'right'
           }}
           editable={false}
         />
       </View>
 
-      {cart.length > 0 &&
+{cart.length > 0 &&
         cart.map((c) => (
-          <View style={{ borderWidth: 1, margin: 10 }}>
-            <View style={{ flexDirection: "row", flex: 1 }}>
-              <View style={{ flex: 0.2, padding: 10 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              flex: 1,
+              borderWidth: 1,
+              margin: 5,
+              padding: 5,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "column",
+                flex: 0.6,
+                justifyContent: "space-around",
+              }}
+            >
+              <View>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate("ProductDetails", { pid: c.pid });
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontWeight: "600",
+                      textAlign: "right",
+                      fontSize: 20,
+                    }}
+                    numberOfLines={1}
+                  >
+                    {c.title}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <View
+                  style={{ flexDirection: "row", justifyContent: "flex-end" }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      fontWeight: "600",
+                      textAlign: "right",
+                      marginRight: 10,
+                      color: "#888",
+                      textDecorationStyle: "solid",
+                      textDecorationLine: "line-through",
+                      textDecorationColor: "#000",
+                    }}
+                  >
+                    IQD {c.normal_price * c.quantity}
+                  </Text>
+                  {c.discount > 0 && (
+                    <Text
+                      style={{
+                        fontSize: 16,
+                        fontWeight: "600",
+                        textAlign: "right",
+                      }}
+                    >
+                      IQD{" "}
+                      {(c.normal_price - (c.discount * c.normal_price) / 100) *
+                        c.quantity}
+                    </Text>
+                  )}
+                  {c.discount <= 0 && (
+                    <Text
+                      style={{
+                        fontSize: 16,
+                        fontWeight: "600",
+                        textAlign: "right",
+                      }}
+                    >
+                      IQD {c.normal_price * c.quantity}
+                    </Text>
+                  )}
+                </View>
+              </View>
+              <View style={{ justifyContent: "flex-end", alignItems: "flex-end" }}>
+                <Text>{c.quantity} كمية</Text>
+              </View>
+              
+            </View>
+            <View style={{ flexDirection: "column", flex: 0.4 }}>
+              <View
+                style={{ justifyContent: "flex-end", alignItems: "center" }}
+              >
                 <Image
                   source={{
                     uri: "https://qasstly.com/" + c.img,
                   }}
-                  style={{ width: 80, height: 80 }}
+                  style={{ width: '80%', height: 80 }}
                 />
               </View>
-              <View style={{ flex: 0.8, padding: 10 }}>
-                <Text style={{ paddingHorizontal: 10 }}>{c.title}</Text>
-              </View>
-            </View>
-            <View style={{ flexDirection: "row", flex: 1 }}>
-              <View style={{ flex: 0.2, padding: 10 }}>
-                <Text style={{ fontSize: 16, fontWeight: "600" }}>Price</Text>
-              </View>
-              <View style={{ flex: 0.8, padding: 10 }}>
-                {c.discount > 0 && (
-                  <Text
-                    style={{
-                      paddingHorizontal: 10,
-                      fontSize: 16,
-                      fontWeight: "600",
-                      textAlign: "right",
-                    }}
-                  >
-                    {c.normal_price - (c.discount * c.normal_price) / 100}
-                  </Text>
-                )}
-                {c.discount <= 0 && (
-                  <Text
-                    style={{
-                      paddingHorizontal: 10,
-                      fontSize: 16,
-                      fontWeight: "600",
-                      textAlign: "right",
-                    }}
-                  >
-                    {c.normal_price}
-                  </Text>
-                )}
-              </View>
+              
             </View>
           </View>
         ))}
@@ -224,13 +278,13 @@ export default function CheckoutScreen({ navigation }) {
             fontWeight: "bold",
           }}
         >
-          Checkout
+          إكمال الطلب
         </Text>
 
-        <Text style={{fontWeight: '800', fontSize: 16}}>Total: IQD {total}</Text>
+        <Text style={{fontWeight: '800', fontSize: 16}}>المجموع: IQD {total}</Text>
 
         <TouchableOpacity style={{backgroundColor: 'red', justifyContent: 'flex-end', marginTop: 15}} onPress={() => {checkoutOrder()}}>
-            <Text style={{padding: 10, color: '#fff', fontWeight: '600', textAlign: 'center'}}>Checkout</Text>
+            <Text style={{padding: 10, color: '#fff', fontWeight: '600', textAlign: 'center'}}>إكمال الطلب</Text>
         </TouchableOpacity>
         
       </View>

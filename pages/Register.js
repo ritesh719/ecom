@@ -11,27 +11,62 @@ import {
   View,
 } from "react-native";
 import TopHeader from "../components/TopHeader";
+import validator from 'validator';
 
 export default function Register({ navigation }) {
   const [email, setemail] = useState(null);
   const [fname, setfname] = useState(null);
   const [lname, setlname] = useState(null);
   const [phone, setphone] = useState(null);
-  const [bank, setbank] = useState(null);
+  const [bank, setbank] = useState(10);
   const [address, setaddress] = useState(null);
   const [uname, setuname] = useState(null);
   const [account, setaccount] = useState(null);
   const [password, setpassword] = useState(null);
 
   const register = () => {
-    axios.post("https://qasstly.com/api/register.php", {email: email, fname: fname, lname: lname, phone: phone, bank: bank, address: address, uname: uname, account: account, password: password}).then((res) => {
-        if(res.data.code == 200){
-            alert('Registration Successfull. Please Login');
-            navigation.navigate('Login')
+
+    if(email && fname && lname && phone && bank && address && uname && account && password){
+      
+      if(email && validator.isEmail(email)){
+
+        if(phone && phone.startsWith("+9647")){
+
+          if(validator.isAlpha(fname)){
+            if(validator.isAlpha(lname)){
+              axios.post("https://qasstly.com/api/register.php", {email: email, fname: fname, lname: lname, phone: phone, bank: bank, address: address, uname: uname, account: account, password: password}).then((res) => {
+                  if(res.data.code == 200){
+                      alert('تم التسجيل بنجاح. الرجاء تسجيل الدخول');
+                      navigation.navigate('Login')
+                  }else{
+                      alert(res.data.msg)
+                  }
+              }).catch((e) => {
+                console.log('====================================');
+                console.log(e);
+                console.log('====================================');
+              })
+            }else{
+              alert("لا يمكن أن يحتوي الاسم على أرقام")
+            }
+          }else{
+            alert("لا يمكن أن يحتوي الاسم على أرقام")
+          }
+
         }else{
-            alert(res.data.msg)
+
+          alert("أدخل رقم هاتف صالحًا يبدأ بـ +9647")
+
         }
-    })
+
+      }else{
+        alert("يرجى إدخال البريد الإلكتروني الصحيح")
+      }
+
+    }else{
+      alert('املأ جميع التفاصيل')
+    }
+
   }
 
   return (
@@ -51,76 +86,84 @@ export default function Register({ navigation }) {
             fontSize: 32,
             borderBottomWidth: 0.7,
             paddingHorizontal: 10,
-            paddingVertical: 30,
+            paddingVertical: 20,
           }}
         >
-          Register
+          تسجيل حساب جديد
         </Text>
 
         <TextInput
           onChangeText={(t) => setemail(t)}
-          placeholder="Email"
+          placeholder="بريد إلكتروني"
+          textContentType="emailAddress"
           style={{
             borderWidth: 1,
             padding: 10,
             marginTop: 20,
             borderRadius: 3,
             borderColor: "#444",
+            textAlign: 'right'
           }}
         />
         <TextInput
           onChangeText={(t) => setuname(t)}
-          placeholder="Username"
+          placeholder="اسم المستخدم"
           style={{
             borderWidth: 1,
             padding: 10,
             marginTop: 20,
             borderRadius: 3,
             borderColor: "#444",
+            textAlign: 'right'
           }}
         />
         <TextInput
           onChangeText={(t) => setfname(t)}
-          placeholder="First Name"
+          placeholder="الاسم الأول"
           style={{
             borderWidth: 1,
             padding: 10,
             marginTop: 20,
             borderRadius: 3,
             borderColor: "#444",
+            textAlign: 'right'
           }}
         />
         <TextInput
           onChangeText={(t) => setlname(t)}
-          placeholder="Last Name"
+          placeholder="اسم العائلة"
           style={{
             borderWidth: 1,
             padding: 10,
             marginTop: 20,
             borderRadius: 3,
             borderColor: "#444",
+            textAlign: 'right'
           }}
         />
         <TextInput
           onChangeText={(t) => setphone(t)}
-          placeholder="Phone"
+          textContentType="telephoneNumber"
+          placeholder="هاتف"
           style={{
             borderWidth: 1,
             padding: 10,
             marginTop: 20,
             borderRadius: 3,
             borderColor: "#444",
+            textAlign: 'right'
           }}
         />
         <TextInput
           onChangeText={(t) => setaddress(t)}
-          placeholder="Address"
+          placeholder="عنوان"
           style={{
             borderWidth: 1,
             padding: 10,
             marginTop: 20,
             borderRadius: 3,
             borderColor: "#444",
+            textAlign: 'right'
           }}
         />
         <View
@@ -138,7 +181,7 @@ export default function Register({ navigation }) {
             }}
             selectedValue={bank}
           >
-            <Picker.Item value="" label="Select Bank" />
+            <Picker.Item value="" label="ممول" />
             <Picker.Item value="10" label="مصرف الشرق" />
             <Picker.Item value="11" label="مصرف الأعمال" />
             <Picker.Item value="12" label="المصرف المركزي" />
@@ -148,18 +191,19 @@ export default function Register({ navigation }) {
         </View>
         <TextInput
           onChangeText={(t) => setaccount(t)}
-          placeholder="Account Number"
+          placeholder="رقم حساب"
           style={{
             borderWidth: 1,
             padding: 10,
             marginTop: 20,
             borderRadius: 3,
             borderColor: "#444",
+            textAlign: 'right'
           }}
         />
         <TextInput
           onChangeText={(t) => setpassword(t)}
-          placeholder="Password"
+          placeholder="كلمة المرور"
           secureTextEntry
           style={{
             borderWidth: 1,
@@ -167,6 +211,7 @@ export default function Register({ navigation }) {
             marginTop: 20,
             borderRadius: 3,
             borderColor: "#444",
+            textAlign: 'right'
           }}
         />
 
@@ -185,7 +230,7 @@ export default function Register({ navigation }) {
               fontSize: 15,
             }}
           >
-            Sign In
+            تسجيل حساب جديد
           </Text>
         </TouchableOpacity>
 
@@ -205,7 +250,7 @@ export default function Register({ navigation }) {
               fontSize: 15,
             }}
           >
-            Already a User? Login
+            بالفعل مستخدم؟ تسجيل الدخول
           </Text>
         </TouchableOpacity>
       </View>

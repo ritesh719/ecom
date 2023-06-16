@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useState, useEffect, useContext } from "react";
 import { SafeAreaView, View, ActivityIndicator, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
@@ -15,16 +16,12 @@ const Routes = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    SecureStore.getItemAsync("user")
-      .then((userString) => {
-        if (userString) {
-          setUser(JSON.parse(userString));
-        }
-        setLoading(false);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    AsyncStorage.getItem('user').then((value) => {
+      if (value) {
+        setUser(JSON.parse(value));
+      }
+      setLoading(false)
+    });
   }, []);
 
   if (loading) {

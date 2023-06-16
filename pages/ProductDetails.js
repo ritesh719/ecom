@@ -44,9 +44,6 @@ export default function ProductDetails({ navigation, route }) {
       .get("https://qasstly.com/api/fetch_single_product.php?pid=" + pid)
       .then((res) => {
         setProduct(res.data);
-        console.log('====================================');
-        console.log(res.data.product);
-        console.log('====================================');
         setProductI(res.data.product.main_img);
         if(res.data.reviews.length > 0){
           setShowRew(true);
@@ -109,7 +106,7 @@ export default function ProductDetails({ navigation, route }) {
         </View>
 
         <View style={{ margin: 10 }}>
-          <Text style={{ fontWeight: "700", fontSize: 24 }}>
+          <Text style={{ fontWeight: "700", fontSize: 24, textAlign: 'right' }}>
             {product.product.title}
           </Text>
         </View>
@@ -122,9 +119,10 @@ export default function ProductDetails({ navigation, route }) {
               textDecorationStyle: "solid",
               textDecorationLine: "line-through",
               textDecorationColor: "#000",
+              textAlign: 'right'
             }}
           >
-            {product.product.normal_price}
+            IQD {product.product.normal_price}
           </Text>
         </View>
         <View style={{ marginHorizontal: 10 }}>
@@ -134,9 +132,10 @@ export default function ProductDetails({ navigation, route }) {
                 fontWeight: "800",
                 fontSize: 20,
                 color: "tomato",
+                textAlign: 'right'
               }}
             >
-              {product.product.normal_price -
+              IQD {product.product.normal_price -
                 (product.product.normal_price * product.product.discount) / 100}
             </Text>
           )}
@@ -146,14 +145,15 @@ export default function ProductDetails({ navigation, route }) {
                 fontWeight: "800",
                 fontSize: 20,
                 color: "tomato",
+                textAlign: 'right'
               }}
             >
-              {product.product.normal_price}
+              IQD {product.product.normal_price}
             </Text>
           )}
         </View>
 
-        <View style={{ display: "flex", flexWrap: "wrap", margin: 10 }}>
+        <View style={{ display: "flex", flexWrap: "wrap", margin: 10, flexDirection: 'row-reverse' }}>
           {product.product.quantity > 0 && !alreadyAdded && (
             <TouchableOpacity
               style={{
@@ -173,7 +173,7 @@ export default function ProductDetails({ navigation, route }) {
                   fontWeight: "800",
                 }}
               >
-                Add to Cart
+                أضف إلى السلة
               </Text>
             </TouchableOpacity>
           )}
@@ -196,7 +196,7 @@ export default function ProductDetails({ navigation, route }) {
                   fontWeight: "800",
                 }}
               >
-                Go to Cart
+                اذهب إلى عربة التسوق
               </Text>
             </TouchableOpacity>
           )}
@@ -215,7 +215,7 @@ export default function ProductDetails({ navigation, route }) {
                   fontWeight: "800",
                 }}
               >
-                Not Available
+                غير متاح
               </Text>
             </View>
           )}
@@ -223,7 +223,7 @@ export default function ProductDetails({ navigation, route }) {
         <View style={{ borderWidth: 0.3, margin: 10 }}></View>
 
         <View style={{ marginHorizontal: 10 }}>
-          <Text style={{ fontWeight: "600", fontSize: 18 }}>Description</Text>
+          <Text style={{ fontWeight: "600", fontSize: 18 }}>وصف</Text>
         </View>
 
         <View style={{ margin: 10 }}>
@@ -258,7 +258,7 @@ export default function ProductDetails({ navigation, route }) {
         <View style={{ borderWidth: 0.3, margin: 10 }}></View>
 
         <View style={{ marginHorizontal: 10 }}>
-          <Text style={{ fontWeight: "600", fontSize: 18 }}>Reviews</Text>
+          <Text style={{ fontWeight: "600", fontSize: 18 }}>المراجعات</Text>
         </View>
 
         {showRew &&

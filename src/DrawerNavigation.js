@@ -20,6 +20,8 @@ import Financiers from "../pages/Financiers";
 import Contract from "../pages/Contract";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import ContactUs from "../pages/ContactUs";
+import Search from "../pages/Search";
+import MyProfile from "../pages/MyProfile";
 
 const Drawer = createDrawerNavigator();
 
@@ -41,6 +43,8 @@ function StackFirst() {
       <Stack.Screen name="Contract" component={Contract} />
       <Stack.Screen name="Privacy" component={PrivacyPolicy} />
       <Stack.Screen name="Contact" component={ContactUs} />
+      <Stack.Screen name="Search" component={Search} />
+      <Stack.Screen name="MyProfile" component={MyProfile} />
     </Stack.Navigator>
   );
 }

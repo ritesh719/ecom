@@ -13,7 +13,7 @@ export default function PrivacyPolicy({navigation}) {
       }}
     >
       <TopHeader navigation={navigation} />
-        <WebView source={{uri: 'https://qasstly.com/privacy_policy_app.php'}} style={{width: '100%'}} />
+        <WebView source={{uri: 'https://qasstly.com/api/privacy_policy_app.php'}} style={{width: '100%'}} />
     </View>
   )
 }

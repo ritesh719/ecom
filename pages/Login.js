@@ -59,23 +59,24 @@ export default function Login({ navigation }) {
             paddingVertical: 30,
           }}
         >
-          Login
+          تسجيل الدخول
         </Text>
 
         <TextInput
           onChangeText={(t) => setemail(t)}
-          placeholder="Username"
+          placeholder="اسم المستخدم أو البريد الإلكتروني:"
           style={{
             borderWidth: 1,
             padding: 10,
             marginTop: 50,
             borderRadius: 3,
             borderColor: "#444",
+            textAlign: 'right'
           }}
         />
         <TextInput
           onChangeText={(t) => setpassword(t)}
-          placeholder="Password"
+          placeholder="كلمة المرور:"
           secureTextEntry
           style={{
             borderWidth: 1,
@@ -83,6 +84,7 @@ export default function Login({ navigation }) {
             marginTop: 20,
             borderRadius: 3,
             borderColor: "#444",
+            textAlign: 'right'
           }}
         />
 
@@ -98,7 +100,7 @@ export default function Login({ navigation }) {
               fontSize: 15,
             }}
           >
-            Sign In
+            تسجيل الدخول
           </Text>
         </TouchableOpacity>
 
@@ -113,7 +115,7 @@ export default function Login({ navigation }) {
               fontSize: 15,
             }}
           >
-            New User? Register Here
+            تسجيل حساب جديد
           </Text>
         </TouchableOpacity>
       </View>

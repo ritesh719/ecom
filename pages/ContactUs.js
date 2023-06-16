@@ -13,7 +13,7 @@ export default function ContactUs({navigation}) {
       }}
     >
       <TopHeader navigation={navigation} />
-        <WebView source={{uri: 'https://qasstly.com/contact_us_app.php'}} style={{width: '100%'}} />
+        <WebView source={{uri: 'https://qasstly.com/api/contact_us_app.php'}} style={{width: '100%'}} />
     </View>
   )
 }

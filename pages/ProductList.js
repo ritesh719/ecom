@@ -43,7 +43,7 @@ export default function ProductList({ navigation, route }) {
 
       <View style={{ margin: 10, borderBottomWidth: 0.5, padding: 10 }}>
         <Text style={{ fontWeight: "900", fontSize: 22, textAlign: "center" }}>
-          Products
+        منتجات
         </Text>
       </View>
       {product.length > 0 && (
@@ -69,28 +69,12 @@ export default function ProductList({ navigation, route }) {
       )}
 
       {product.length <= 0 && (
-        <TouchableOpacity
-          style={{
-            backgroundColor: "tomato",
-            paddingHorizontal: 20,
-            paddingVertical: 10,
-            margin: 10,
-          }}
-          onPress={() => {
-            navigation.goBack();
-          }}
-        >
-          <Text
-            style={{
-              color: "#fff",
-              fontWeight: "900",
-              textAlign: "center",
-              fontSize: 18,
-            }}
-          >
-            Go Back
-          </Text>
-        </TouchableOpacity>
+        <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+          <Text style={{textAlign: 'center'}}>لا توجد منتجات في هذه الفئة</Text>
+          <TouchableOpacity style={{margin: 20, paddingVertical: 10, paddingHorizontal: 30, backgroundColor: 'red'}} onPress={() => {navigation.navigate('Dashboard')}}>
+            <Text style={{color: '#fff', fontWeight: '600'}}>اذهب إلى الصفحة الرئيسية</Text>
+          </TouchableOpacity>
+        </View>
       )}
     </ScrollView>
   );

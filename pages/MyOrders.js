@@ -46,7 +46,7 @@ export default function MyOrders({navigation}) {
             paddingVertical: 10,
           }}
         >
-          MY ORDERS
+          طلباتي
         </Text>
       </View>
 
@@ -63,7 +63,7 @@ export default function MyOrders({navigation}) {
                 />
               </View>
               <View style={{ flex: 0.8, padding: 10 }}>
-                <Text style={{ paddingHorizontal: 10 }}>Order ID: {c.order_id}</Text>
+                <Text style={{ paddingHorizontal: 10 }}>رقم التعريف الخاص بالطلب: {c.order_id}</Text>
                 <Text style={{ paddingHorizontal: 10 }}>{c.title}</Text>
                 <Text style={{ paddingHorizontal: 10 }}>{c.date}</Text>
                 <Text style={{ paddingHorizontal: 10, fontWeight: '800' }}>{c.p_status}</Text>
@@ -71,7 +71,7 @@ export default function MyOrders({navigation}) {
             </View>
             <View style={{ flexDirection: "row", flex: 1 }}>
               <View style={{ flex: 0.2, padding: 10 }}>
-                <Text style={{ fontSize: 16, fontWeight: "600" }}>Price</Text>
+                <Text style={{ fontSize: 16, fontWeight: "600" }}>سعر</Text>
               </View>
               <View style={{ flex: 0.8, padding: 10 }}>
                   <Text

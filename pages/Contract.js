@@ -13,7 +13,7 @@ export default function Contract({navigation}) {
       }}
     >
       <TopHeader navigation={navigation} />
-        <WebView source={{uri: 'https://qasstly.com/s_contract_app.php'}} style={{width: '100%'}} />
+        <WebView source={{uri: 'https://qasstly.com/api/s_contract_app.php'}} style={{width: '100%'}} />
     </View>
   )
 }

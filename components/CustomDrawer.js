@@ -53,7 +53,7 @@ const CustomDrawer = (props) => {
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView
         {...props}
-        contentContainerStyle={{ backgroundColor: "#8200d6" }}
+        contentContainerStyle={{ backgroundColor: "#E4B600" }}
       >
         <View
           style={{
@@ -73,15 +73,37 @@ const CustomDrawer = (props) => {
           /> */}
           <FontAwesome5 name="user-circle" size={42} color="#fff" />
           {user && (
+            <View>
             <Text
               style={{
                 color: "#fff",
                 fontSize: 18,
                 marginVertical: 15,
+                textAlign: 'center'
               }}
             >
               {user.firstname + " " + user.lastname}
             </Text>
+            <TouchableOpacity
+            onPress={() => {
+              props.navigation.navigate("MyProfile");
+            }}
+          >
+            <Text
+              style={{
+                color: "#fff",
+                fontSize: 18,
+                marginVertical: 5,
+                backgroundColor: "red",
+                paddingHorizontal: 10,
+                paddingVertical: 5,
+                textAlign: 'center'
+              }}
+            >
+              حسابي
+            </Text>
+          </TouchableOpacity>
+          </View>
           )}
           {!user && (
             <TouchableOpacity
@@ -99,7 +121,7 @@ const CustomDrawer = (props) => {
                   paddingVertical: 5,
                 }}
               >
-                Login
+                تسجيل الدخول
               </Text>
             </TouchableOpacity>
           )}
@@ -107,11 +129,11 @@ const CustomDrawer = (props) => {
         <View style={{ flex: 1, backgroundColor: "#fff", paddingTop: 10 }}>
           <TouchableOpacity
             style={{
-              backgroundColor: "#aa18ea",
+              backgroundColor: "#E4B600",
               margin: 10,
               padding: 10,
               borderRadius: 5,
-              flexDirection: "row",
+              flexDirection: "row-reverse",
             }}
             onPress={() => {
               props.navigation.navigate("Dashboard");
@@ -119,13 +141,13 @@ const CustomDrawer = (props) => {
           >
             <MaterialCommunityIcons name="home" size={22} color="#fff" />
             <Text style={{ color: "#fff", fontSize: 16, marginLeft: 5 }}>
-              Home
+            الرئيسية
             </Text>
           </TouchableOpacity>
 
           <View
             style={{
-              backgroundColor: "#aa18ea",
+              backgroundColor: "#E4B600",
               margin: 10,
               padding: 10,
               borderRadius: 5,
@@ -133,7 +155,7 @@ const CustomDrawer = (props) => {
           >
             <TouchableOpacity
               style={{
-                flexDirection: "row",
+                flexDirection: "row-reverse",
                 alignItems: "center",
                 borderRadius: 5,
                 justifyContent: "space-between",
@@ -147,12 +169,7 @@ const CustomDrawer = (props) => {
               }}
             >
               <View style={{ flexDirection: "row" }}>
-                <Ionicons name="albums-outline" size={22} color={"#fff"} />
-                <Text style={{ color: "#fff", fontSize: 16, marginLeft: 5 }}>
-                  Categories
-                </Text>
-              </View>
-              <View>
+                
                 {showcat && (
                   <MaterialCommunityIcons
                     name="chevron-down"
@@ -163,11 +180,16 @@ const CustomDrawer = (props) => {
 
                 {!showcat && (
                   <MaterialCommunityIcons
-                    name="chevron-right"
+                    name="chevron-left"
                     size={22}
                     color="#fff"
                   />
                 )}
+                <Text style={{ color: "#fff", fontSize: 16, marginLeft: 5 }}>
+                فئات
+                </Text>
+
+                <Ionicons name="albums-outline" size={22} color={"#fff"} style={{marginLeft: 10}} />
               </View>
             </TouchableOpacity>
 
@@ -178,7 +200,7 @@ const CustomDrawer = (props) => {
                   <View>
                     <TouchableOpacity
                       style={{
-                        flexDirection: "row",
+                        flexDirection: "row-reverse",
                         alignItems: "center",
                         borderRadius: 5,
                         justifyContent: "space-between",
@@ -266,21 +288,22 @@ const CustomDrawer = (props) => {
                     >
                       <View style={{ flexDirection: "row" }}>
                         <MaterialCommunityIcons
-                          name="shopping-outline"
+                          name="chevron-left"
                           size={22}
-                          color={"#fff"}
+                          color="#fff"
                         />
+
                         <Text
                           style={{ color: "#fff", fontSize: 16, marginLeft: 5 }}
                         >
                           {item.category}
                         </Text>
-                      </View>
-                      <View>
+                        
                         <MaterialCommunityIcons
-                          name="chevron-right"
+                          name="shopping-outline"
                           size={22}
-                          color="#fff"
+                          color={"#fff"}
+                          style={{marginLeft: 10}}
                         />
                       </View>
                     </TouchableOpacity>
@@ -299,7 +322,7 @@ const CustomDrawer = (props) => {
                       item.sub_cat.map((it) => (
                         <TouchableOpacity
                           style={{
-                            flexDirection: "row",
+                            flexDirection: "row-reverse",
                             alignItems: "center",
                             borderRadius: 5,
                             justifyContent: "space-between",
@@ -314,9 +337,9 @@ const CustomDrawer = (props) => {
                         >
                           <View style={{ flexDirection: "row" }}>
                             <MaterialCommunityIcons
-                              name="chess-bishop"
+                              name="chevron-left"
                               size={22}
-                              color={"#fff"}
+                              color="#fff"
                             />
                             <Text
                               style={{
@@ -327,12 +350,12 @@ const CustomDrawer = (props) => {
                             >
                               {it.sub_category}
                             </Text>
-                          </View>
-                          <View>
+                            
                             <MaterialCommunityIcons
-                              name="chevron-right"
+                              name="chess-bishop"
                               size={22}
-                              color="#fff"
+                              color={"#fff"}
+                              style={{marginLeft: 10}}
                             />
                           </View>
                         </TouchableOpacity>
@@ -344,11 +367,11 @@ const CustomDrawer = (props) => {
 
           <TouchableOpacity
             style={{
-              backgroundColor: "#aa18ea",
+              backgroundColor: "#E4B600",
               margin: 10,
               padding: 10,
               borderRadius: 5,
-              flexDirection: "row",
+              flexDirection: "row-reverse",
             }}
             onPress={() => {
               props.navigation.navigate("Cart");
@@ -356,18 +379,18 @@ const CustomDrawer = (props) => {
           >
             <MaterialCommunityIcons name="cart" size={22} color="#fff" />
             <Text style={{ color: "#fff", fontSize: 16, marginLeft: 5 }}>
-              My Cart
+            عربة التسوق الخاصة بي
             </Text>
           </TouchableOpacity>
 
           {user && (
             <TouchableOpacity
               style={{
-                backgroundColor: "#aa18ea",
+                backgroundColor: "#E4B600",
                 margin: 10,
                 padding: 10,
                 borderRadius: 5,
-                flexDirection: "row",
+                flexDirection: "row-reverse",
               }}
               onPress={() => {
                 props.navigation.navigate("MyOrders");
@@ -375,18 +398,18 @@ const CustomDrawer = (props) => {
             >
               <MaterialCommunityIcons name="cart-plus" size={22} color="#fff" />
               <Text style={{ color: "#fff", fontSize: 16, marginLeft: 5 }}>
-                My Orders
+              طلباتي
               </Text>
             </TouchableOpacity>
           )}
 
           <TouchableOpacity
             style={{
-              backgroundColor: "#aa18ea",
+              backgroundColor: "#E4B600",
               margin: 10,
               padding: 10,
               borderRadius: 5,
-              flexDirection: "row",
+              flexDirection: "row-reverse",
             }}
             onPress={() => {
               props.navigation.navigate("Financiers");
@@ -394,17 +417,17 @@ const CustomDrawer = (props) => {
           >
             <MaterialCommunityIcons name="cash" size={22} color="#fff" />
             <Text style={{ color: "#fff", fontSize: 16, marginLeft: 5 }}>
-              Our Financiers
+            ممولينا
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={{
-              backgroundColor: "#aa18ea",
+              backgroundColor: "#E4B600",
               margin: 10,
               padding: 10,
               borderRadius: 5,
-              flexDirection: "row",
+              flexDirection: "row-reverse",
             }}
             onPress={() => {
               props.navigation.navigate("Privacy");
@@ -412,17 +435,17 @@ const CustomDrawer = (props) => {
           >
             <MaterialCommunityIcons name="lock" size={22} color="#fff" />
             <Text style={{ color: "#fff", fontSize: 16, marginLeft: 5 }}>
-              Privacy Policy
+            سياسة الخصوصية
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={{
-              backgroundColor: "#aa18ea",
+              backgroundColor: "#E4B600",
               margin: 10,
               padding: 10,
               borderRadius: 5,
-              flexDirection: "row",
+              flexDirection: "row-reverse",
             }}
             onPress={() => {
               props.navigation.navigate("Contract");
@@ -430,17 +453,17 @@ const CustomDrawer = (props) => {
           >
             <MaterialCommunityIcons name="file" size={22} color="#fff" />
             <Text style={{ color: "#fff", fontSize: 16, marginLeft: 5 }}>
-              Contract of Sales
+            عقد البيع
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={{
-              backgroundColor: "#aa18ea",
+              backgroundColor: "#E4B600",
               margin: 10,
               padding: 10,
               borderRadius: 5,
-              flexDirection: "row",
+              flexDirection: "row-reverse",
             }}
             onPress={() => {
               props.navigation.navigate("Contact");
@@ -448,18 +471,18 @@ const CustomDrawer = (props) => {
           >
             <MaterialCommunityIcons name="globe-light" size={22} color="#fff" />
             <Text style={{ color: "#fff", fontSize: 16, marginLeft: 5 }}>
-              Contact Us
+            اتصل بنا
             </Text>
           </TouchableOpacity>
 
           {user && (
             <TouchableOpacity
               style={{
-                backgroundColor: "#aa18ea",
+                backgroundColor: "#E4B600",
                 margin: 10,
                 padding: 10,
                 borderRadius: 5,
-                flexDirection: "row",
+                flexDirection: "row-reverse",
               }}
               onPress={() => {
                 setUser(null);
@@ -467,14 +490,14 @@ const CustomDrawer = (props) => {
             >
               <MaterialCommunityIcons name="logout" size={22} color="#fff" />
               <Text style={{ color: "#fff", fontSize: 16, marginLeft: 5 }}>
-                Logout
+              تسجيل خروج
               </Text>
             </TouchableOpacity>
           )}
         </View>
       </DrawerContentScrollView>
       <View style={{ padding: 20, borderTopWidth: 1, borderTopColor: "#ccc" }}>
-        <TouchableOpacity onPress={() => {}} style={{ paddingVertical: 15 }}>
+        <TouchableOpacity onPress={() => {}} style={{ paddingVertical: 15, flexDirection: 'row-reverse' }}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Ionicons name="share-social-outline" size={22} />
             <Text
@@ -483,7 +506,7 @@ const CustomDrawer = (props) => {
                 marginLeft: 5,
               }}
             >
-              Tell a Friend
+              اخبر صديق
             </Text>
           </View>
         </TouchableOpacity>

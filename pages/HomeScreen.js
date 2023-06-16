@@ -120,12 +120,12 @@ export default function HomeScreen({ navigation }) {
         <View
           style={{
             borderBottomWidth: 3,
-            width: "50%",
+            width: "100%",
             borderBottomColor: "tomato",
             paddingBottom: 8,
           }}
         >
-          <Text style={{ fontWeight: "bold", fontSize: 24 }}>New Products</Text>
+          <Text style={{ fontWeight: "bold", fontSize: 24 }}>منتجات جديدة</Text>
         </View>
       </View>
 
